@@ -1,11 +1,17 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { X } from "lucide-react";
+import { X, Filter } from "lucide-react";
 
 const Gallery = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
   const [selectedImage, setSelectedImage] = useState<{
     src: string;
     title: string;
@@ -94,57 +100,99 @@ const Gallery = () => {
     ? galleryItems 
     : galleryItems.filter(item => item.category === activeCategory);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" as const },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* Hero */}
-      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20" ref={ref}>
         <div className="container px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-executive text-primary mb-4">Moments of Excellence</p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4 px-4 py-2 bg-primary/10 rounded-full">
+              Moments of Excellence
+            </span>
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6">
               Gallery
             </h1>
-            <p className="text-institutional text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               A visual journey through strategic partnerships, prestigious events, 
               and moments that define a decade of institutional leadership.
             </p>
             <div className="line-gold max-w-xs mx-auto mt-8" />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Category Filter */}
-      <section className="pb-8">
+      <section className="pb-10">
         <div className="container px-4 sm:px-6">
-          <div className="flex flex-wrap justify-center gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            <div className="flex items-center gap-2 mr-4 text-muted-foreground">
+              <Filter className="w-4 h-4" />
+              <span className="text-sm font-medium">Filter:</span>
+            </div>
             {categories.map((category) => (
-              <button
+              <motion.button
                 key={category}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveCategory(category)}
-                className={`px-5 py-2 text-sm font-medium transition-all duration-300 ${
+                className={`px-5 py-2.5 text-sm font-medium transition-all duration-300 rounded-full ${
                   activeCategory === category
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
                     : "bg-card text-muted-foreground hover:text-foreground border border-border hover:border-primary/50"
                 }`}
               >
                 {category}
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Gallery Grid */}
-      <section className="pb-20 sm:pb-32">
+      <section className="pb-24 sm:pb-32">
         <div className="container px-4 sm:px-6">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {filteredItems.map((item, index) => (
-              <div
+              <motion.div
                 key={index}
+                variants={itemVariants}
+                whileHover={{ y: -8, scale: 1.02 }}
                 onClick={() => setSelectedImage(item)}
-                className="group cursor-pointer overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-500 hover-lift"
+                className="group cursor-pointer overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 hover:shadow-2xl transition-all duration-500"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
@@ -154,8 +202,8 @@ const Gallery = () => {
                     loading="lazy"
                   />
                 </div>
-                <div className="p-5">
-                  <span className="text-xs uppercase tracking-wider text-primary mb-2 block">
+                <div className="p-6">
+                  <span className="inline-block text-xs font-semibold uppercase tracking-wider text-primary mb-2 px-3 py-1 bg-primary/10 rounded-full">
                     {item.category}
                   </span>
                   <h3 className="font-serif text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
@@ -165,15 +213,15 @@ const Gallery = () => {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Lightbox Dialog */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-4xl bg-card border-border p-0">
+        <DialogContent className="max-w-4xl bg-card border-border p-0 rounded-2xl overflow-hidden">
           {selectedImage && (
             <div>
               <div className="relative">
@@ -184,13 +232,13 @@ const Gallery = () => {
                 />
                 <button
                   onClick={() => setSelectedImage(null)}
-                  className="absolute top-4 right-4 p-2 bg-background/80 text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  className="absolute top-4 right-4 p-3 bg-background/90 rounded-full text-foreground hover:bg-primary hover:text-primary-foreground transition-colors shadow-lg"
                 >
                   <X size={20} />
                 </button>
               </div>
-              <div className="p-6">
-                <span className="text-xs uppercase tracking-wider text-primary mb-2 block">
+              <div className="p-8">
+                <span className="inline-block text-xs font-semibold uppercase tracking-wider text-primary mb-3 px-3 py-1 bg-primary/10 rounded-full">
                   {galleryItems.find(item => item.src === selectedImage.src)?.category}
                 </span>
                 <h3 className="font-serif text-2xl text-foreground mb-2">

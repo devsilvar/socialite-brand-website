@@ -1,41 +1,59 @@
-const Footer = () => {
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
+import { forwardRef } from "react";
+
+const Footer = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <footer className="py-12 bg-obsidian border-t border-border">
+    <footer ref={ref} className="py-16 bg-charcoal border-t border-border">
       <div className="container px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             {/* Logo & tagline */}
-            <div>
-              <p className="font-serif text-xl text-foreground mb-2">
-                Wale <span className="text-primary">Tomtom</span>
-              </p>
-              <p className="text-sm text-muted-foreground">
+            <motion.div whileHover={{ scale: 1.02 }}>
+              <Link to="/" className="inline-flex items-center gap-3 mb-3">
+                <Sparkles className="w-6 h-6 text-primary" />
+                <p className="font-serif text-2xl text-white">
+                  Wale <span className="text-primary">Tomtom</span>
+                </p>
+              </Link>
+              <p className="text-sm text-white/60">
                 The Intersection of Sociology and Real Estate Strategy
               </p>
-            </div>
+            </motion.div>
             
             {/* Quick links */}
-            <div className="flex flex-wrap gap-6 text-sm">
-              <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
-                About
-              </a>
-              <a href="#business" className="text-muted-foreground hover:text-primary transition-colors">
-                Business
-              </a>
-              <a href="#credentials" className="text-muted-foreground hover:text-primary transition-colors">
-                Credentials
-              </a>
-              <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
-                Contact
-              </a>
+            <div className="flex flex-wrap gap-8 text-sm">
+              {[
+                { label: "About", href: "/#about" },
+                { label: "Business", href: "/#business" },
+                { label: "Gallery", href: "/gallery" },
+                { label: "Awards", href: "/awards" },
+                { label: "Contact", href: "/#contact" },
+              ].map((link) => (
+                <motion.div key={link.label} whileHover={{ y: -2 }}>
+                  {link.href.startsWith("/") && !link.href.includes("#") ? (
+                    <Link to={link.href} className="text-white/60 hover:text-primary transition-colors font-medium">
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a href={link.href} className="text-white/60 hover:text-primary transition-colors font-medium">
+                      {link.label}
+                    </a>
+                  )}
+                </motion.div>
+              ))}
             </div>
           </div>
           
-          <div className="section-divider my-8" />
+          <div className="h-px w-full bg-white/10 my-10" />
           
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs text-white/50">
             <p>© {new Date().getFullYear()} Wale Tomtom. All rights reserved.</p>
-            <p>Forbes Business Council Member • Bluemart Properties Limited</p>
+            <p className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              Forbes Business Council Member • Bluemart Properties Limited
+            </p>
           </div>
         </div>
       </div>
