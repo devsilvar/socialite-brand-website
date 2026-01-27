@@ -4,7 +4,6 @@ import { useRef } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { Award, Trophy, Star, Medal, Crown, Globe, Heart, Quote } from "lucide-react";
 
 const Awards = () => {
   const ref = useRef(null);
@@ -12,291 +11,237 @@ const Awards = () => {
 
   const majorAwards = [
     {
-      icon: Trophy,
-      title: "Forbes Business Council Member",
-      year: "2022 - Present",
+      title: "Forbes Business Council",
+      year: "2022",
       organization: "Forbes Media LLC",
-      description: "Selected for membership in the exclusive Forbes Business Council, recognizing exceptional business leadership and industry expertise on a global stage.",
-      highlight: true,
+      description: "Selected for membership in the exclusive Forbes Business Council, recognizing exceptional business leadership.",
+      featured: true,
     },
     {
-      icon: Crown,
-      title: "Outstanding Youth Personality of the Year",
+      title: "Outstanding Youth Personality",
       year: "2021",
-      organization: "Nigerian Youth Excellence Awards",
-      description: "Honored for exceptional contributions to youth development, entrepreneurship, and community building across Nigeria.",
-      highlight: true,
+      organization: "Nigerian Excellence Awards",
+      description: "Honored for exceptional contributions to youth development and entrepreneurship across Nigeria.",
+      featured: true,
     },
     {
-      icon: Medal,
-      title: "Real Estate Excellence Award",
+      title: "Real Estate Excellence",
       year: "2023",
-      organization: "Nigerian Real Estate Developers Association",
-      description: "Recognized for innovation in distressed asset management and pioneering bank-direct property solutions.",
-      highlight: false,
+      organization: "REDAN",
+      description: "Recognized for innovation in distressed asset management and bank-direct property solutions.",
+      featured: false,
     },
     {
-      icon: Star,
       title: "Distinguished Rotarian",
       year: "2020",
-      organization: "Rotary International District 9125",
+      organization: "Rotary International",
       description: "Awarded for outstanding humanitarian service and leadership within the Rotary community.",
-      highlight: false,
+      featured: false,
     },
     {
-      icon: Globe,
       title: "International Business Leadership",
       year: "2022",
-      organization: "Leeds Business School Alumni Association",
-      description: "Honored for demonstrating exceptional business acumen and representing Nigerian excellence in international markets.",
-      highlight: false,
+      organization: "Leeds Alumni Association",
+      description: "Honored for demonstrating exceptional business acumen in international markets.",
+      featured: false,
     },
     {
-      icon: Heart,
       title: "Community Development Champion",
       year: "2021",
       organization: "Ondo State Government",
-      description: "Recognized for significant contributions to housing development and youth empowerment in Ondo State.",
-      highlight: false,
+      description: "Recognized for contributions to housing development and youth empowerment.",
+      featured: false,
     },
   ];
 
-  const recognitions = [
-    {
-      title: "ThisDay Business Profile",
-      description: "Featured as one of Nigeria's emerging real estate moguls",
-      year: "2023",
-    },
-    {
-      title: "City People Magazine Cover",
-      description: "Cover feature highlighting business achievements and lifestyle",
-      year: "2022",
-    },
-    {
-      title: "The Sun Newspaper Feature",
-      description: "In-depth profile on institutional real estate innovation",
-      year: "2023",
-    },
-    {
-      title: "Forbes Africa Spotlight",
-      description: "Featured in Forbes Africa's business leaders segment",
-      year: "2022",
-    },
+  const press = [
+    { name: "Forbes Africa", year: "2022" },
+    { name: "ThisDay", year: "2023" },
+    { name: "City People", year: "2022" },
+    { name: "The Sun", year: "2023" },
   ];
 
   const milestones = [
-    { value: "₦5B+", label: "Assets Managed" },
-    { value: "200+", label: "Successful Transactions" },
-    { value: "15+", label: "Bank Partnerships" },
-    { value: "10+", label: "Years of Excellence" },
+    { value: "₦5B+", label: "Assets" },
+    { value: "200+", label: "Transactions" },
+    { value: "15+", label: "Bank Partners" },
+    { value: "10+", label: "Years" },
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" as const },
-    },
-  };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero */}
-      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20" ref={ref}>
-        <div className="container px-4 sm:px-6">
+      {/* Hero - Ultra Minimal */}
+      <section className="pt-32 pb-20 sm:pt-40 sm:pb-24" ref={ref}>
+        <div className="container px-6 sm:px-8 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-3xl"
           >
-            <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4 px-4 py-2 bg-primary/10 rounded-full">
-              Recognition & Honors
-            </span>
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6">
-              Awards & Achievements
+            <p className="label-minimal text-primary mb-6">Recognition</p>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-medium text-foreground leading-[0.95] mb-6">
+              Awards &<br />
+              <span className="text-gradient-gold">Achievements</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              A decade of excellence recognized by prestigious institutions, 
-              industry bodies, and international organizations.
+            <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+              A decade of excellence recognized by prestigious institutions 
+              and international organizations.
             </p>
-            <div className="line-gold max-w-xs mx-auto mt-8" />
           </motion.div>
         </div>
       </section>
 
-      {/* Milestone Stats */}
-      <section className="pb-16">
-        <div className="container px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="grid grid-cols-2 md:grid-cols-4 gap-6"
-            >
-              {milestones.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  variants={itemVariants}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  className="text-center p-8 bg-card rounded-2xl border border-border hover:border-primary/50 hover:shadow-xl transition-all"
-                >
-                  <p className="font-serif text-3xl sm:text-4xl text-gradient-gold mb-2">
-                    {stat.value}
-                  </p>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Major Awards */}
+      {/* Stats Bar */}
       <section className="pb-20">
-        <div className="container px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center mb-12"
-            >
-              <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                Major Honors
-              </span>
-              <h2 className="font-serif text-3xl sm:text-4xl text-foreground">
-                Prestigious Awards
-              </h2>
-            </motion.div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="grid md:grid-cols-2 gap-6"
-            >
-              {majorAwards.map((award, index) => (
-                <motion.div
-                  key={award.title}
-                  variants={itemVariants}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className={`group p-8 rounded-2xl transition-all duration-300 ${
-                    award.highlight
-                      ? "bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary/30 shadow-xl shadow-primary/10"
-                      : "bg-card border border-border hover:border-primary/50 hover:shadow-xl"
-                  }`}
-                >
-                  <div className="flex items-start gap-5">
-                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                      award.highlight 
-                        ? "bg-primary text-primary-foreground" 
-                        : "bg-primary/10 group-hover:bg-primary group-hover:text-primary-foreground"
-                    }`}>
-                      <award.icon
-                        className={`w-7 h-7 ${
-                          award.highlight ? "text-primary-foreground" : "text-primary group-hover:text-primary-foreground"
-                        } transition-colors`}
-                        strokeWidth={1.5}
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <span className="inline-block text-xs font-semibold px-3 py-1 bg-primary/10 text-primary rounded-full mb-3">
-                        {award.year}
-                      </span>
-                      <h3 className="font-serif text-xl text-foreground mb-1">
-                        {award.title}
-                      </h3>
-                      <p className="text-sm text-primary font-medium mb-3">{award.organization}</p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {award.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+        <div className="container px-6 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-wrap justify-start gap-12 sm:gap-16 lg:gap-20 py-8 border-y border-border"
+          >
+            {milestones.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+              >
+                <p className="text-3xl sm:text-4xl font-display text-foreground mb-1">
+                  {stat.value}
+                </p>
+                <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* Media Recognition */}
-      <section className="py-24 bg-card">
-        <div className="container px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-center mb-12"
-            >
-              <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                Media Presence
-              </span>
-              <h2 className="font-serif text-3xl sm:text-4xl text-foreground">
-                Featured In
-              </h2>
-            </motion.div>
+      {/* Featured Awards */}
+      <section className="pb-24">
+        <div className="container px-6 sm:px-8 lg:px-12">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="label-minimal mb-12"
+          >
+            Major Honors
+          </motion.p>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {recognitions.map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  variants={itemVariants}
-                  whileHover={{ y: -8 }}
-                  className="p-6 bg-background rounded-2xl border border-border hover:border-primary/50 hover:shadow-xl transition-all duration-300 text-center"
-                >
-                  <span className="inline-block text-xs font-semibold text-primary mb-3 px-3 py-1 bg-primary/10 rounded-full">
-                    {item.year}
+          <div className="grid lg:grid-cols-2 gap-6">
+            {majorAwards.filter(a => a.featured).map((award, index) => (
+              <motion.div
+                key={award.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                className="group p-8 sm:p-10 bg-card border border-border rounded-2xl hover:border-primary/30 transition-all duration-500"
+              >
+                <div className="flex items-start justify-between mb-6">
+                  <span className="text-xs font-medium tracking-wide text-primary px-3 py-1.5 bg-primary/10 rounded-full">
+                    {award.year}
                   </span>
-                  <h3 className="font-serif text-lg text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
-                </motion.div>
-              ))}
-            </motion.div>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-display text-foreground mb-2">
+                  {award.title}
+                </h3>
+                <p className="text-sm text-primary font-medium mb-4">{award.organization}</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {award.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Quote Section */}
-      <section className="py-24">
-        <div className="container px-4 sm:px-6">
+      {/* Other Awards - Minimal List */}
+      <section className="pb-24">
+        <div className="container px-6 sm:px-8 lg:px-12">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="label-minimal mb-8"
+          >
+            Additional Recognition
+          </motion.p>
+
+          <div className="space-y-0 border-t border-border">
+            {majorAwards.filter(a => !a.featured).map((award, index) => (
+              <motion.div
+                key={award.title}
+                initial={{ opacity: 0, x: -10 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+                className="group flex flex-col sm:flex-row sm:items-center justify-between py-6 border-b border-border hover:bg-secondary/30 transition-colors duration-300 -mx-4 px-4 rounded-lg"
+              >
+                <div className="flex-1">
+                  <h4 className="text-lg font-medium text-foreground group-hover:text-primary transition-colors">
+                    {award.title}
+                  </h4>
+                  <p className="text-sm text-muted-foreground">{award.organization}</p>
+                </div>
+                <span className="text-sm font-medium text-muted-foreground mt-2 sm:mt-0">
+                  {award.year}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Press Section - Super Minimal */}
+      <section className="py-24 bg-secondary/30">
+        <div className="container px-6 sm:px-8 lg:px-12">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="label-minimal text-center mb-12"
+          >
+            Featured In
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 lg:gap-16"
+          >
+            {press.map((item) => (
+              <div key={item.name} className="text-center group cursor-default">
+                <p className="text-xl sm:text-2xl font-display text-foreground group-hover:text-primary transition-colors">
+                  {item.name}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Quote - Elegant */}
+      <section className="py-24 sm:py-32">
+        <div className="container px-6 sm:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 1 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-8">
-              <Quote className="w-8 h-8 text-primary" strokeWidth={1.5} />
-            </div>
-            <blockquote className="font-serif text-2xl sm:text-3xl text-foreground mb-6 leading-relaxed">
-              "Excellence is not a destination but a continuous journey. Every award 
-              represents not just personal achievement, but the collective effort of 
-              teams, partners, and communities who believe in our vision."
-            </blockquote>
-            <cite className="text-lg text-muted-foreground font-medium">
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-display text-foreground leading-relaxed mb-8">
+              "Excellence is not a destination but a continuous journey. Every recognition 
+              represents the collective effort of teams and communities who believe in our vision."
+            </p>
+            <p className="text-sm text-muted-foreground tracking-wide">
               — Akinwale Matthew Feyiyemi Abidakun
-            </cite>
+            </p>
           </motion.div>
         </div>
       </section>

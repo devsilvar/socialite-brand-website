@@ -1,33 +1,26 @@
+import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 
 const WhatsAppButton = () => {
-  const phoneNumber = "2348034567890"; // Replace with actual number
+  const phoneNumber = "2348034567890";
   const message = encodeURIComponent("Hello, I'd like to discuss investment opportunities with Bluemart Properties.");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
   return (
-    <a
+    <motion.a
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 group"
-      aria-label="Contact via WhatsApp"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 1.5, duration: 0.4 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
+      aria-label="Chat on WhatsApp"
     >
-      <div className="relative">
-        {/* Pulse animation */}
-        <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-25" />
-        
-        {/* Button */}
-        <div className="relative w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
-          <MessageCircle className="w-7 h-7 text-white" fill="white" strokeWidth={0} />
-        </div>
-        
-        {/* Tooltip */}
-        <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-card border border-border px-3 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-          <p className="text-sm text-foreground">Direct Consultation</p>
-        </div>
-      </div>
-    </a>
+      <MessageCircle className="w-6 h-6 text-white" fill="white" strokeWidth={0} />
+    </motion.a>
   );
 };
 
