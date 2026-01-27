@@ -21,6 +21,7 @@ const Navigation = () => {
     { label: "Business", href: "/#business", isPage: false },
     { label: "Gallery", href: "/gallery", isPage: true },
     { label: "Awards", href: "/awards", isPage: true },
+    { label: "Contact", href: "/contact", isPage: true },
   ];
 
   const handleNavClick = (href: string, isPage: boolean) => {
@@ -89,10 +90,10 @@ const Navigation = () => {
             <motion.a
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              href="/#contact"
+              href="/contact"
               className="px-6 py-2.5 bg-foreground text-background text-sm font-medium tracking-wide rounded-full hover:bg-primary transition-colors duration-300"
             >
-              Contact
+              Get in Touch
             </motion.a>
           </div>
 
