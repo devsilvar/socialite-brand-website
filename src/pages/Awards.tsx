@@ -1,9 +1,15 @@
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { Award, Trophy, Star, Medal, Crown, Users, Globe, Heart } from "lucide-react";
+import { Award, Trophy, Star, Medal, Crown, Globe, Heart, Quote } from "lucide-react";
 
 const Awards = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   const majorAwards = [
     {
       icon: Trophy,
@@ -85,24 +91,48 @@ const Awards = () => {
     { value: "10+", label: "Years of Excellence" },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" as const },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* Hero */}
-      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20" ref={ref}>
         <div className="container px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-executive text-primary mb-4">Recognition & Honors</p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4 px-4 py-2 bg-primary/10 rounded-full">
+              Recognition & Honors
+            </span>
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground mb-6">
               Awards & Achievements
             </h1>
-            <p className="text-institutional text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               A decade of excellence recognized by prestigious institutions, 
               industry bodies, and international organizations.
             </p>
             <div className="line-gold max-w-xs mx-auto mt-8" />
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -110,21 +140,28 @@ const Awards = () => {
       <section className="pb-16">
         <div className="container px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {milestones.map((stat) => (
-                <div
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid grid-cols-2 md:grid-cols-4 gap-6"
+            >
+              {milestones.map((stat, index) => (
+                <motion.div
                   key={stat.label}
-                  className="text-center p-6 bg-card border border-border hover:border-primary/50 transition-colors"
+                  variants={itemVariants}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="text-center p-8 bg-card rounded-2xl border border-border hover:border-primary/50 hover:shadow-xl transition-all"
                 >
                   <p className="font-serif text-3xl sm:text-4xl text-gradient-gold mb-2">
                     {stat.value}
                   </p>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     {stat.label}
                   </p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -133,95 +170,134 @@ const Awards = () => {
       <section className="pb-20">
         <div className="container px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <p className="text-executive text-muted-foreground mb-4">Major Honors</p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-center mb-12"
+            >
+              <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                Major Honors
+              </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-foreground">
                 Prestigious Awards
               </h2>
-            </div>
+            </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {majorAwards.map((award) => (
-                <div
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid md:grid-cols-2 gap-6"
+            >
+              {majorAwards.map((award, index) => (
+                <motion.div
                   key={award.title}
-                  className={`group p-8 transition-all duration-300 hover-lift ${
+                  variants={itemVariants}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className={`group p-8 rounded-2xl transition-all duration-300 ${
                     award.highlight
-                      ? "bg-card border-gradient-gold glow-gold"
-                      : "bg-card border border-border hover:border-primary/50"
+                      ? "bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary/30 shadow-xl shadow-primary/10"
+                      : "bg-card border border-border hover:border-primary/50 hover:shadow-xl"
                   }`}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className={`p-3 ${award.highlight ? "bg-primary/20" : "bg-muted"} transition-colors`}>
+                  <div className="flex items-start gap-5">
+                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                      award.highlight 
+                        ? "bg-primary text-primary-foreground" 
+                        : "bg-primary/10 group-hover:bg-primary group-hover:text-primary-foreground"
+                    }`}>
                       <award.icon
-                        className={`w-8 h-8 ${
-                          award.highlight ? "text-primary" : "text-muted-foreground group-hover:text-primary"
+                        className={`w-7 h-7 ${
+                          award.highlight ? "text-primary-foreground" : "text-primary group-hover:text-primary-foreground"
                         } transition-colors`}
                         strokeWidth={1.5}
                       />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="text-xs px-2 py-1 bg-primary/10 text-primary">
-                          {award.year}
-                        </span>
-                      </div>
+                      <span className="inline-block text-xs font-semibold px-3 py-1 bg-primary/10 text-primary rounded-full mb-3">
+                        {award.year}
+                      </span>
                       <h3 className="font-serif text-xl text-foreground mb-1">
                         {award.title}
                       </h3>
-                      <p className="text-sm text-primary mb-3">{award.organization}</p>
+                      <p className="text-sm text-primary font-medium mb-3">{award.organization}</p>
                       <p className="text-muted-foreground text-sm leading-relaxed">
                         {award.description}
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Media Recognition */}
-      <section className="py-20 bg-card/50">
+      <section className="py-24 bg-card">
         <div className="container px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <p className="text-executive text-muted-foreground mb-4">Media Presence</p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center mb-12"
+            >
+              <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                Media Presence
+              </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-foreground">
                 Featured In
               </h2>
-            </div>
+            </motion.div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {recognitions.map((item) => (
-                <div
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
+              {recognitions.map((item, index) => (
+                <motion.div
                   key={item.title}
-                  className="p-6 bg-background border border-border hover:border-primary/50 transition-all duration-300 hover-lift text-center"
+                  variants={itemVariants}
+                  whileHover={{ y: -8 }}
+                  className="p-6 bg-background rounded-2xl border border-border hover:border-primary/50 hover:shadow-xl transition-all duration-300 text-center"
                 >
-                  <p className="text-xs text-primary mb-3">{item.year}</p>
+                  <span className="inline-block text-xs font-semibold text-primary mb-3 px-3 py-1 bg-primary/10 rounded-full">
+                    {item.year}
+                  </span>
                   <h3 className="font-serif text-lg text-foreground mb-2">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.description}</p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Quote Section */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="container px-4 sm:px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <Award className="w-12 h-12 text-primary mx-auto mb-8" strokeWidth={1} />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-8">
+              <Quote className="w-8 h-8 text-primary" strokeWidth={1.5} />
+            </div>
             <blockquote className="font-serif text-2xl sm:text-3xl text-foreground mb-6 leading-relaxed">
               "Excellence is not a destination but a continuous journey. Every award 
               represents not just personal achievement, but the collective effort of 
               teams, partners, and communities who believe in our vision."
             </blockquote>
-            <cite className="text-muted-foreground text-institutional">
+            <cite className="text-lg text-muted-foreground font-medium">
               — Akinwale Matthew Feyiyemi Abidakun
             </cite>
-          </div>
+          </motion.div>
         </div>
       </section>
 
