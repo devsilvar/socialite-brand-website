@@ -1,18 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { label: "About", href: "/#about", isPage: false },
     { label: "Business", href: "/#business", isPage: false },
     { label: "Gallery", href: "/gallery", isPage: true },
     { label: "Awards", href: "/awards", isPage: true },
-    { label: "Contact", href: "/#contact", isPage: false },
   ];
 
   const handleNavClick = (href: string, isPage: boolean) => {
@@ -24,38 +32,43 @@ const Navigation = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border shadow-sm"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled 
+          ? "bg-background/95 backdrop-blur-md border-b border-border/50" 
+          : "bg-transparent"
+      }`}
     >
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-18 sm:h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <motion.div
-              whileHover={{ rotate: 180 }}
-              transition={{ duration: 0.5 }}
-              className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors"
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="flex items-center justify-between h-20 sm:h-24">
+          {/* Logo - Minimal & Refined */}
+          <Link to="/" className="group">
+            <motion.span 
+              className="text-xl sm:text-2xl font-display font-medium text-foreground tracking-tight"
+              whileHover={{ opacity: 0.7 }}
+              transition={{ duration: 0.2 }}
             >
-              <Sparkles className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
-            </motion.div>
-            <span className="text-xl sm:text-2xl font-serif font-semibold text-foreground">
-              Wale <span className="text-primary">Tomtom</span>
-            </span>
+              Wale<span className="text-primary">.</span>
+            </motion.span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation - Ultra Clean */}
+          <div className="hidden md:flex items-center gap-12">
             {navLinks.map((link) => (
-              <motion.div key={link.label} whileHover={{ y: -2 }}>
+              <motion.div 
+                key={link.label}
+                whileHover={{ y: -1 }}
+                transition={{ duration: 0.2 }}
+              >
                 {link.isPage ? (
                   <Link
                     to={link.href}
-                    className={`px-4 py-2 text-sm font-medium tracking-wide transition-all duration-300 rounded-lg ${
+                    className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
                       location.pathname === link.href
-                        ? "text-primary bg-primary/10"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     {link.label}
@@ -64,7 +77,7 @@ const Navigation = () => {
                   <a
                     href={link.href}
                     onClick={() => handleNavClick(link.href, link.isPage)}
-                    className="px-4 py-2 text-sm font-medium tracking-wide text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-300 rounded-lg"
+                    className="text-sm font-medium tracking-wide text-muted-foreground hover:text-foreground transition-colors duration-300"
                   >
                     {link.label}
                   </a>
@@ -72,14 +85,14 @@ const Navigation = () => {
               </motion.div>
             ))}
             
-            {/* CTA Button */}
+            {/* CTA - Minimal but Impactful */}
             <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               href="/#contact"
-              className="ml-4 px-5 py-2.5 bg-primary text-primary-foreground text-sm font-semibold rounded-lg shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all"
+              className="px-6 py-2.5 bg-foreground text-background text-sm font-medium tracking-wide rounded-full hover:bg-primary transition-colors duration-300"
             >
-              Get in Touch
+              Contact
             </motion.a>
           </div>
 
@@ -87,36 +100,37 @@ const Navigation = () => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2.5 rounded-lg bg-muted text-foreground"
+            className="md:hidden p-2 text-foreground"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
+            {isOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
           </motion.button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Full Screen Overlay */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden"
+              className="fixed inset-0 top-20 bg-background md:hidden"
             >
-              <div className="flex flex-col gap-2 pb-6 pt-2">
+              <div className="flex flex-col items-center justify-center h-full gap-8 -mt-20">
                 {navLinks.map((link, index) => (
                   <motion.div
                     key={link.label}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ delay: index * 0.1, duration: 0.3 }}
                   >
                     {link.isPage ? (
                       <Link
                         to={link.href}
                         onClick={() => setIsOpen(false)}
-                        className="block px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all"
+                        className="text-3xl font-display font-medium text-foreground hover:text-primary transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -124,7 +138,7 @@ const Navigation = () => {
                       <a
                         href={link.href}
                         onClick={() => handleNavClick(link.href, link.isPage)}
-                        className="block px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all"
+                        className="text-3xl font-display font-medium text-foreground hover:text-primary transition-colors"
                       >
                         {link.label}
                       </a>
@@ -133,14 +147,15 @@ const Navigation = () => {
                 ))}
                 
                 <motion.a
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navLinks.length * 0.05 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ delay: navLinks.length * 0.1, duration: 0.3 }}
                   href="/#contact"
                   onClick={() => setIsOpen(false)}
-                  className="mt-2 px-4 py-3 bg-primary text-primary-foreground text-sm font-semibold rounded-lg text-center shadow-lg shadow-primary/20"
+                  className="mt-4 px-8 py-3 bg-foreground text-background text-lg font-medium rounded-full"
                 >
-                  Get in Touch
+                  Contact
                 </motion.a>
               </div>
             </motion.div>

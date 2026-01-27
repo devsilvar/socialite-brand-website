@@ -1,165 +1,138 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const contactInfo = [
+    { label: "Direct Line", value: "+234 803 456 7890", href: "tel:+2348034567890" },
+    { label: "Email", value: "info@bluemartproperties.com", href: "mailto:info@bluemartproperties.com" },
+    { label: "Office", value: "Lagos, Nigeria" },
+  ];
+
   return (
-    <section id="contact" className="py-24 sm:py-32 bg-background" ref={ref}>
-      <div className="container px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          {/* Section header */}
+    <section id="contact" className="py-24 sm:py-32" ref={ref}>
+      <div className="container px-6 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="max-w-3xl mb-16"
           >
-            <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4 px-4 py-2 bg-primary/10 rounded-full">
-              Connect
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-              Let's Discuss Opportunities
+            <p className="label-minimal text-primary mb-6">Connect</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-foreground leading-[0.95] mb-6">
+              Let's Discuss<br />
+              <span className="text-gradient-gold">Opportunities</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            <p className="text-lg text-muted-foreground leading-relaxed">
               Whether you're an investor seeking below-market assets or a financial institution 
-              requiring property solutions, the conversation starts here.
+              requiring property solutions.
             </p>
-            <div className="line-gold max-w-xs mx-auto mt-8" />
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Contact info */}
+          <div className="grid lg:grid-cols-2 gap-16">
+            
+            {/* Contact Info */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h3 className="font-serif text-2xl text-foreground mb-10">Verified Credentials</h3>
+              <p className="label-minimal mb-8">Credentials</p>
               
-              <div className="space-y-6">
-                {[
-                  {
-                    icon: Phone,
-                    label: "Direct Line",
-                    value: "+234 803 456 7890",
-                    href: "tel:+2348034567890",
-                  },
-                  {
-                    icon: Mail,
-                    label: "Email",
-                    value: "info@bluemartproperties.com",
-                    href: "mailto:info@bluemartproperties.com",
-                  },
-                  {
-                    icon: MapPin,
-                    label: "Office",
-                    value: "Lagos, Nigeria",
-                    subtext: "Akure Heritage",
-                  },
-                ].map((item) => (
-                  <motion.div
-                    key={item.label}
-                    whileHover={{ x: 4 }}
-                    className="flex items-start gap-5 group"
-                  >
-                    <div className="w-14 h-14 rounded-xl bg-card border border-border flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all">
-                      <item.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</p>
-                      {item.href ? (
-                        <a href={item.href} className="text-lg text-foreground hover:text-primary transition-colors font-medium">
-                          {item.value}
-                        </a>
-                      ) : (
-                        <>
-                          <p className="text-lg text-foreground font-medium">{item.value}</p>
-                          {item.subtext && <p className="text-sm text-muted-foreground">{item.subtext}</p>}
-                        </>
-                      )}
-                    </div>
-                  </motion.div>
+              <div className="space-y-6 mb-12">
+                {contactInfo.map((item) => (
+                  <div key={item.label} className="group">
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
+                      {item.label}
+                    </p>
+                    {item.href ? (
+                      <a 
+                        href={item.href} 
+                        className="text-xl font-medium text-foreground hover:text-primary transition-colors"
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="text-xl font-medium text-foreground">{item.value}</p>
+                    )}
+                  </div>
                 ))}
               </div>
 
-              {/* Legacy credential */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="mt-12 pt-10 border-t border-border"
-              >
-                <div className="bg-card rounded-2xl p-6 border border-border">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Legacy Contact</p>
-                  <p className="text-sm text-muted-foreground mb-3">BBM PIN (Archived)</p>
-                  <code className="text-2xl font-serif text-primary font-semibold">2b134bb2</code>
-                  <p className="text-xs text-muted-foreground mt-3">
-                    A testament to over a decade of consistent industry presence
-                  </p>
-                </div>
-              </motion.div>
+              {/* Legacy BBM */}
+              <div className="p-6 bg-secondary/50 rounded-xl">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
+                  Legacy Contact • BBM PIN
+                </p>
+                <code className="text-2xl font-display text-primary">2b134bb2</code>
+                <p className="text-xs text-muted-foreground mt-2">
+                  A testament to over a decade of consistent presence
+                </p>
+              </div>
             </motion.div>
 
-            {/* Contact form */}
+            {/* Form */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-card rounded-3xl border border-border p-8 sm:p-10 shadow-lg"
+              className="bg-card rounded-2xl border border-border p-8 sm:p-10"
             >
-              <h3 className="font-serif text-2xl text-foreground mb-8">Send a Message</h3>
+              <p className="label-minimal mb-8">Send a Message</p>
               
               <form className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground block mb-3">Name</label>
+                    <label className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">Name</label>
                     <input
                       type="text"
-                      className="w-full px-5 py-4 bg-background rounded-xl border border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 bg-background rounded-lg border border-border text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none transition-colors text-sm"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground block mb-3">Email</label>
+                    <label className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">Email</label>
                     <input
                       type="email"
-                      className="w-full px-5 py-4 bg-background rounded-xl border border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 bg-background rounded-lg border border-border text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none transition-colors text-sm"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground block mb-3">Inquiry Type</label>
-                  <select className="w-full px-5 py-4 bg-background rounded-xl border border-border text-foreground focus:border-primary focus:outline-none transition-colors appearance-none cursor-pointer">
-                    <option value="">Select an option</option>
+                  <label className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">Type</label>
+                  <select className="w-full px-4 py-3 bg-background rounded-lg border border-border text-foreground focus:border-foreground focus:outline-none transition-colors text-sm appearance-none cursor-pointer">
+                    <option value="">Select inquiry type</option>
                     <option value="investor">Investment Inquiry</option>
                     <option value="institution">Institutional Partnership</option>
                     <option value="media">Media Request</option>
                     <option value="speaking">Speaking Engagement</option>
-                    <option value="other">Other</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground block mb-3">Message</label>
+                  <label className="text-xs uppercase tracking-wider text-muted-foreground block mb-2">Message</label>
                   <textarea
                     rows={4}
-                    className="w-full px-5 py-4 bg-background rounded-xl border border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-background rounded-lg border border-border text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none transition-colors resize-none text-sm"
                     placeholder="Your message..."
                   />
                 </div>
                 
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                   type="submit"
-                  className="w-full bg-primary text-primary-foreground py-5 text-sm font-semibold tracking-wide rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl flex items-center justify-center gap-3 transition-all"
+                  className="w-full bg-foreground text-background py-4 text-sm font-medium tracking-wide rounded-lg hover:bg-primary transition-colors"
                 >
                   Send Message
-                  <Send className="w-4 h-4" />
                 </motion.button>
               </form>
             </motion.div>
