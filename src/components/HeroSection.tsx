@@ -2,120 +2,112 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   const stats = [
-    { value: "10+", label: "Years" },
-    { value: "₦5B+", label: "Assets" },
-    { value: "200+", label: "Deals" },
+    { value: "10+", label: "Years Experience" },
+    { value: "₦5B+", label: "Assets Managed" },
+    { value: "200+", label: "Successful Deals" },
   ];
 
   const credentials = [
-    "Forbes Council",
+    "Forbes Business Council",
     "Bluemart CEO", 
-    "Leeds Business",
-    "Rotarian",
+    "Leeds Business School",
+    "Rotary International",
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center py-24 overflow-hidden">
-      {/* Subtle background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-secondary/20" />
+    <section className="relative min-h-screen flex items-center py-20 lg:py-0 overflow-hidden">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/30" />
       
-      {/* Decorative circles */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.03, scale: 1 }}
-          transition={{ duration: 1.5 }}
-          className="absolute w-[500px] h-[500px] sm:w-[600px] sm:h-[600px] lg:w-[700px] lg:h-[700px] rounded-full border border-foreground"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.02, scale: 1 }}
-          transition={{ duration: 1.5, delay: 0.2 }}
-          className="absolute w-[650px] h-[650px] sm:w-[800px] sm:h-[800px] lg:w-[950px] lg:h-[950px] rounded-full border border-foreground"
-        />
-      </div>
-
       <div className="container relative z-10 px-6 sm:px-8">
-        <div className="max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
           
-          {/* Centered Content */}
-          <div className="flex flex-col items-center text-center">
-            
-            {/* Pre-label */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-xs font-medium uppercase tracking-[0.25em] text-primary mb-8"
-            >
-              Forbes Business Council Member
-            </motion.p>
+          {/* Left Side - Large Circular Profile */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative flex justify-center lg:justify-end order-1 lg:order-1"
+          >
+            {/* Decorative rings */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="absolute w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] lg:w-[480px] lg:h-[480px] rounded-full border border-border/60"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="absolute w-[400px] h-[400px] sm:w-[500px] sm:h-[500px] lg:w-[560px] lg:h-[560px] rounded-full border border-border/30"
+              />
+            </div>
 
-            {/* Circular Profile Container */}
+            {/* Main Profile Circle */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="relative mb-10"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
             >
-              {/* Outer ring */}
-              <div className="absolute -inset-4 rounded-full border border-border" />
-              <div className="absolute -inset-8 rounded-full border border-border/50" />
+              {/* Subtle glow */}
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary/20 via-transparent to-primary/10 blur-xl" />
               
-              {/* Stats positioned around circle */}
-              <div className="hidden sm:block">
-                {stats.map((stat, index) => {
-                  const angle = -60 + index * 60; // Position at -60°, 0°, 60°
-                  const radius = 180;
-                  const x = Math.cos((angle * Math.PI) / 180) * radius;
-                  const y = Math.sin((angle * Math.PI) / 180) * radius;
-                  
-                  return (
-                    <motion.div
-                      key={stat.label}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                      className="absolute bg-background border border-border rounded-full px-4 py-2 shadow-sm"
-                      style={{
-                        left: `calc(50% + ${x}px - 40px)`,
-                        top: `calc(50% + ${y}px - 20px)`,
-                      }}
-                    >
-                      <p className="text-lg font-display text-foreground leading-none">{stat.value}</p>
-                      <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{stat.label}</p>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
               {/* Profile Image */}
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-background shadow-2xl">
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-border/50 shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80"
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
                   alt="Wale Tomtom"
                   className="w-full h-full object-cover"
                 />
               </div>
+
+              {/* Floating badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-background border border-border px-6 py-2 rounded-full shadow-lg"
+              >
+                <p className="text-xs font-medium tracking-wider text-primary uppercase">Forbes Council</p>
+              </motion.div>
             </motion.div>
+          </motion.div>
+
+          {/* Right Side - Information */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            className="order-2 lg:order-2 text-center lg:text-left"
+          >
+            {/* Pre-label */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-6"
+            >
+              Real Estate Strategist & Investor
+            </motion.p>
 
             {/* Name */}
-            <motion.div
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-4"
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-medium text-foreground leading-[1.1] mb-3"
             >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-medium text-foreground leading-none">
-                Wale <span className="text-gradient-gold">Tomtom</span>
-              </h1>
-            </motion.div>
+              Wale <span className="text-gradient-gold">Tomtom</span>
+            </motion.h1>
 
             {/* Full name */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
               className="text-sm text-muted-foreground tracking-wide mb-6"
             >
               Akinwale Matthew Feyiyemi Abidakun
@@ -125,25 +117,25 @@ const HeroSection = () => {
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-xl sm:text-2xl font-display text-foreground/80 max-w-lg mb-8"
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-lg sm:text-xl font-display text-foreground/80 max-w-md mx-auto lg:mx-0 mb-8"
             >
               The intersection of sociology and real estate strategy.
             </motion.p>
 
-            {/* Credentials Pills */}
+            {/* Credentials */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex flex-wrap justify-center gap-2 mb-10"
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10"
             >
               {credentials.map((item, index) => (
                 <motion.span
                   key={item}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.7 + index * 0.05 }}
+                  transition={{ duration: 0.3, delay: 0.8 + index * 0.05 }}
                   className="px-4 py-1.5 text-xs font-medium tracking-wide text-muted-foreground border border-border rounded-full hover:border-primary/50 hover:text-foreground transition-all duration-300"
                 >
                   {item}
@@ -151,18 +143,24 @@ const HeroSection = () => {
               ))}
             </motion.div>
 
-            {/* Mobile stats */}
+            {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex gap-8 mb-10 sm:hidden"
+              transition={{ duration: 0.6, delay: 0.9 }}
+              className="flex justify-center lg:justify-start gap-8 mb-10"
             >
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <p className="text-2xl font-display text-foreground">{stat.value}</p>
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
+                  className="text-center lg:text-left"
+                >
+                  <p className="text-2xl sm:text-3xl font-display text-foreground leading-none mb-1">{stat.value}</p>
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{stat.label}</p>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
 
@@ -170,8 +168,8 @@ const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4"
+              transition={{ duration: 0.6, delay: 1.1 }}
+              className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
             >
               <motion.a
                 whileHover={{ scale: 1.02 }}
@@ -193,7 +191,7 @@ const HeroSection = () => {
                 Explore Journey
               </motion.a>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
