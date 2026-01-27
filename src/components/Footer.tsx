@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import { forwardRef } from "react";
 
-const Footer = forwardRef<HTMLElement>((_, ref) => {
+const Footer = () => {
   return (
-    <footer ref={ref} className="py-16 bg-charcoal border-t border-border">
+    <footer className="py-16 bg-charcoal border-t border-border">
       <div className="container px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
