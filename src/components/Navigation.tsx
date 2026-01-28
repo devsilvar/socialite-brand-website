@@ -21,6 +21,7 @@ const Navigation = () => {
     { label: "Business", href: "/#business", isPage: false },
     { label: "Gallery", href: "/gallery", isPage: true },
     { label: "Awards", href: "/awards", isPage: true },
+    { label: "Press", href: "/press", isPage: true },
     { label: "Contact", href: "/contact", isPage: true },
   ];
 
