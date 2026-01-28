@@ -16,6 +16,18 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const navLinks = [
     { label: "Home", href: "/", isPage: true },
     { label: "About", href: "/#about", isPage: false },
@@ -108,23 +120,24 @@ const Navigation = () => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-foreground relative z-50"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
           </motion.button>
         </div>
+      </div>
 
-        {/* Mobile Navigation - Full Screen Overlay */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 top-20 bg-background md:hidden"
-            >
+      {/* Mobile Navigation - Full Screen Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 top-20 bg-background md:hidden z-40"
+          >
               <div className="flex flex-col items-center justify-center h-full gap-8 -mt-20">
                 {navLinks.map((link, index) => (
                   <motion.div
@@ -157,7 +170,6 @@ const Navigation = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
     </motion.nav>
   );
 };
