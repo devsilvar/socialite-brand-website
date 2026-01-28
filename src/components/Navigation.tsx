@@ -136,9 +136,9 @@ const Navigation = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-20 bg-background md:hidden z-40"
+            className="fixed inset-0 bg-background md:hidden z-40 pt-20"
           >
-              <div className="flex flex-col items-center justify-center h-full gap-8 -mt-20">
+            <div className="flex flex-col items-center justify-center h-full gap-8">
                 {navLinks.map((link, index) => (
                   <motion.div
                     key={link.label}
