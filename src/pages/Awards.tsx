@@ -14,42 +14,42 @@ const Awards = () => {
       title: "Forbes Business Council",
       year: "2022",
       organization: "Forbes Media LLC",
-      description: "Selected for membership in the exclusive Forbes Business Council, recognizing exceptional business leadership.",
+      description: "Inducted as a distinguished member of the Forbes Business Council, joining an exclusive community of successful business leaders and entrepreneurs worldwide.",
       featured: true,
     },
     {
       title: "Outstanding Youth Personality",
-      year: "2021",
-      organization: "Nigerian Excellence Awards",
-      description: "Honored for exceptional contributions to youth development and entrepreneurship across Nigeria.",
+      year: "2019",
+      organization: "Nigerian Leadership Awards",
+      description: "Recognized for exceptional entrepreneurship and contributions to Nigeria's real estate sector as a young business leader.",
       featured: true,
     },
     {
-      title: "Real Estate Excellence",
+      title: "Real Estate Excellence Award",
       year: "2023",
-      organization: "REDAN",
-      description: "Recognized for innovation in distressed asset management and bank-direct property solutions.",
+      organization: "Real Estate Developers Association of Nigeria",
+      description: "Honored for pioneering work in distressed asset management and institutional property solutions across Nigeria.",
       featured: false,
     },
     {
       title: "Distinguished Rotarian",
+      year: "2018",
+      organization: "Rotary Club of Lagos",
+      description: "Recognized for exemplary humanitarian service and leadership in community development initiatives.",
+      featured: false,
+    },
+    {
+      title: "Leeds Business School Alumni Achievement",
+      year: "2015",
+      organization: "University of Leeds Alumni Association",
+      description: "Honored for outstanding achievement in international business following MSc in International Business Management.",
+      featured: false,
+    },
+    {
+      title: "Ondo State Development Champion",
       year: "2020",
-      organization: "Rotary International",
-      description: "Awarded for outstanding humanitarian service and leadership within the Rotary community.",
-      featured: false,
-    },
-    {
-      title: "International Business Leadership",
-      year: "2022",
-      organization: "Leeds Alumni Association",
-      description: "Honored for demonstrating exceptional business acumen in international markets.",
-      featured: false,
-    },
-    {
-      title: "Community Development Champion",
-      year: "2021",
-      organization: "Ondo State Government",
-      description: "Recognized for contributions to housing development and youth empowerment.",
+      organization: "Ondo State Excellence Awards",
+      description: "Recognized for championing quality leadership and development initiatives in Ondo State as a proud Akure native.",
       featured: false,
     },
   ];
@@ -62,10 +62,10 @@ const Awards = () => {
   ];
 
   const milestones = [
-    { value: "₦5B+", label: "Assets" },
-    { value: "200+", label: "Transactions" },
-    { value: "15+", label: "Bank Partners" },
-    { value: "10+", label: "Years" },
+    { value: "₦10B+", label: "Assets Managed" },
+    { value: "500+", label: "Transactions" },
+    { value: "20+", label: "Bank Partners" },
+    { value: "19+", label: "Years Experience" },
   ];
 
   return (
