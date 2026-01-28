@@ -13,13 +13,12 @@ const HeroSection = () => {
       {/* Main grid layout */}
       <div className="container relative z-10 px-6 sm:px-8 lg:px-16 pt-32 lg:pt-40 pb-20">
         
-        {/* Top section - Eyebrow spanning full width */}
-        <div className="flex items-center gap-6 mb-12 lg:mb-16">
-          <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent max-w-[100px]" />
-          <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">
+        {/* Top section - Eyebrow left aligned */}
+        <div className="flex items-center gap-4 mb-12 lg:mb-16">
+          <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-primary">
             Real Estate Strategist • Forbes Council
           </span>
-          <span className="h-px flex-1 bg-gradient-to-l from-border to-transparent max-w-[100px]" />
+          <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent max-w-[150px]" />
         </div>
 
         {/* Magazine-style asymmetric grid */}
