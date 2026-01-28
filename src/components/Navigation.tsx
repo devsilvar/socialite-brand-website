@@ -17,6 +17,7 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
+    { label: "Home", href: "/", isPage: true },
     { label: "About", href: "/#about", isPage: false },
     { label: "Business", href: "/#business", isPage: false },
     { label: "Gallery", href: "/gallery", isPage: true },
@@ -28,8 +29,13 @@ const Navigation = () => {
   const handleNavClick = (href: string, isPage: boolean) => {
     setIsOpen(false);
     if (!isPage && location.pathname !== "/") {
+      // Navigate to homepage first, then scroll to section
       window.location.href = href;
     }
+  };
+
+  const handleLogoClick = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -46,7 +52,7 @@ const Navigation = () => {
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-20 sm:h-24">
           {/* Logo - Minimal & Refined */}
-          <Link to="/" className="group">
+          <Link to="/" className="group" onClick={handleLogoClick}>
             <motion.span 
               className="text-xl sm:text-2xl font-display font-medium text-foreground tracking-tight"
               whileHover={{ opacity: 0.7 }}
@@ -147,18 +153,6 @@ const Navigation = () => {
                     )}
                   </motion.div>
                 ))}
-                
-                <motion.a
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ delay: navLinks.length * 0.1, duration: 0.3 }}
-                  href="/#contact"
-                  onClick={() => setIsOpen(false)}
-                  className="mt-4 px-8 py-3 bg-foreground text-background text-lg font-medium rounded-full"
-                >
-                  Contact
-                </motion.a>
               </div>
             </motion.div>
           )}
