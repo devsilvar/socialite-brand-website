@@ -1,3 +1,5 @@
+import waleProfile from "@/assets/wale-tomtom.jpg";
+
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen overflow-hidden">
@@ -16,7 +18,7 @@ const HeroSection = () => {
         {/* Top section - Eyebrow left aligned */}
         <div className="flex items-center gap-4 mb-12 lg:mb-16">
           <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-            Real Estate Strategist • Forbes Council
+            Real Estate Strategist • Forbes Council Member
           </span>
           <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent max-w-[150px]" />
         </div>
@@ -49,7 +51,7 @@ const HeroSection = () => {
               <div className="w-1 h-16 bg-gradient-to-b from-primary to-primary/20 rounded-full flex-shrink-0 mt-1" />
               <div>
                 <p className="text-lg lg:text-xl text-foreground/80 leading-relaxed mb-3">
-                  Where sociology meets real estate. Building generational wealth through understanding people.
+                  Nigeria's leading institutional asset specialist. Transforming distressed bank properties into strategic investments.
                 </p>
                 <p className="text-xs text-muted-foreground tracking-[0.15em] uppercase">
                   Akinwale Matthew Feyiyemi Abidakun
@@ -63,7 +65,7 @@ const HeroSection = () => {
                 { value: "10+", label: "Years" },
                 { value: "200+", label: "Deals" },
                 { value: "₦5B+", label: "Assets" },
-                { value: "50+", label: "Partners" },
+                { value: "20+", label: "Banks" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center lg:text-left">
                   <div className="text-2xl lg:text-3xl font-display font-semibold text-foreground">{stat.value}</div>
@@ -95,7 +97,7 @@ const HeroSection = () => {
           {/* Right side - Image with overlapping elements */}
           <div className="lg:col-span-5 relative lg:-mt-20">
             
-            {/* Main image container - slightly rotated for editorial feel */}
+            {/* Main image container */}
             <div className="relative">
               
               {/* Background shape */}
@@ -105,9 +107,9 @@ const HeroSection = () => {
               <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border border-white/20">
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent z-10" />
                 <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
-                  alt="Wale Tomtom - Real Estate Strategist"
-                  className="w-full h-full object-cover"
+                  src={waleProfile}
+                  alt="Wale Tomtom - CEO of Bluemart Realty Ltd"
+                  className="w-full h-full object-cover object-top"
                 />
                 
                 {/* Overlay text on image */}
@@ -115,7 +117,7 @@ const HeroSection = () => {
                   <div className="glass-card p-4">
                     <div className="flex items-center gap-3">
                       <div className="w-2.5 h-2.5 rounded-full bg-primary" />
-                      <span className="text-xs font-semibold tracking-wider uppercase">Forbes Council Member</span>
+                      <span className="text-xs font-semibold tracking-wider uppercase">Forbes Business Council Member</span>
                     </div>
                   </div>
                 </div>
@@ -123,13 +125,13 @@ const HeroSection = () => {
 
               {/* Floating credential cards */}
               <div className="absolute -left-8 top-1/4 glass-card px-4 py-3 shadow-lg hidden lg:block">
-                <div className="text-xs font-medium text-foreground/80">Featured in</div>
-                <div className="text-sm font-semibold text-foreground mt-1">Forbes Africa</div>
+                <div className="text-xs font-medium text-foreground/80">CEO</div>
+                <div className="text-sm font-semibold text-foreground mt-1">Bluemart Realty Ltd</div>
               </div>
               
               <div className="absolute -right-4 bottom-1/3 glass-card px-4 py-3 shadow-lg hidden lg:block">
-                <div className="text-xs font-medium text-foreground/80">Expertise</div>
-                <div className="text-sm font-semibold text-foreground mt-1">Property Development</div>
+                <div className="text-xs font-medium text-foreground/80">Education</div>
+                <div className="text-sm font-semibold text-foreground mt-1">University of Leeds</div>
               </div>
             </div>
           </div>
@@ -143,11 +145,11 @@ const HeroSection = () => {
           </div>
           
           <div className="flex items-center gap-6 text-muted-foreground">
-            <a href="https://linkedin.com" className="text-xs uppercase tracking-wider hover:text-foreground transition-colors">Li</a>
-            <span className="w-1 h-1 rounded-full bg-border" />
-            <a href="https://twitter.com" className="text-xs uppercase tracking-wider hover:text-foreground transition-colors">Tw</a>
+            <a href="https://web.facebook.com/akinwaletomtom.abidakun" target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-wider hover:text-foreground transition-colors">Fb</a>
             <span className="w-1 h-1 rounded-full bg-border" />
             <a href="https://instagram.com" className="text-xs uppercase tracking-wider hover:text-foreground transition-colors">Ig</a>
+            <span className="w-1 h-1 rounded-full bg-border" />
+            <a href="https://linkedin.com" className="text-xs uppercase tracking-wider hover:text-foreground transition-colors">Li</a>
           </div>
         </div>
       </div>

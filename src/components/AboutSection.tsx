@@ -14,11 +14,11 @@ const AboutSection = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   const timeline = [
-    { year: "2008", title: "University of Ilorin", desc: "B.Sc. Sociology" },
-    { year: "2012", title: "Bi-Courtney Group", desc: "Executive training under Dr. Wale Babalakin SAN" },
-    { year: "2016", title: "University of Leeds", desc: "International Business Certification" },
-    { year: "2018", title: "Bluemart Properties", desc: "Founded distressed assets solutions firm" },
-    { year: "2022", title: "Forbes Council", desc: "Inducted as member" },
+    { year: "2003", title: "University of Ilorin", desc: "B.Sc. Sociology & Anthropology (2.1)" },
+    { year: "2005", title: "Bi-Courtney Group", desc: "Executive Personal Assistant to Dr. Wale Babalakin SAN" },
+    { year: "2009", title: "University of Leeds", desc: "MSc International Business Management (Merit)" },
+    { year: "2014", title: "Bluemart Realty Ltd", desc: "Founded institutional assets solutions firm" },
+    { year: "2022", title: "Forbes Business Council", desc: "Inducted as member" },
   ];
 
   return (
@@ -84,20 +84,22 @@ const AboutSection = () => {
               <p className="text-xl lg:text-2xl text-foreground leading-relaxed font-light">
                 <span className="font-medium">Akinwale Matthew Feyiyemi Abidakun</span>, 
                 known as Wale Tomtom, represents the new generation of Nigerian business 
-                leadership.
+                leadership—born in Akure, Ondo State, and forged through academic excellence 
+                and executive mentorship.
               </p>
               
               <p className="text-muted-foreground leading-relaxed text-lg">
-                Trained as a sociologist at the University of Ilorin and refined through 
-                international business studies at the University of Leeds, his unique 
-                perspective allows him to see property not just as assets, but as 
-                instruments of institutional transformation.
+                Trained as a sociologist at the University of Ilorin (graduating with a 2.1) 
+                and refined through International Business Management studies at the University 
+                of Leeds (Merit), his unique perspective allows him to see property not just as 
+                assets, but as instruments of institutional transformation.
               </p>
               
               <p className="text-muted-foreground leading-relaxed">
-                His five-year tenure under the mentorship of Dr. Wale Babalakin SAN 
-                at the Bi-Courtney Group forged an understanding of how major 
-                infrastructure developments shape economic landscapes.
+                His nine-year tenure at Bi-Courtney Group, serving as Executive Personal 
+                Assistant to Dr. Wale Babalakin SAN, forged an understanding of how major 
+                infrastructure developments shape economic landscapes. This experience 
+                directly informed his expertise in distressed institutional assets.
               </p>
 
               {/* Quote with glass effect */}
@@ -110,14 +112,16 @@ const AboutSection = () => {
                 <div className="absolute -left-3 top-6 w-1.5 h-16 bg-gradient-to-b from-primary to-primary/30 rounded-full" />
                 <p className="text-xl lg:text-2xl font-display text-foreground italic leading-relaxed">
                   "We don't just sell property; we liquidate non-performing collateral 
-                  to restore institutional liquidity."
+                  to restore institutional liquidity for Nigeria's commercial banks."
                 </p>
               </motion.blockquote>
 
               <p className="text-muted-foreground leading-relaxed">
-                Today, as CEO of Bluemart Properties Limited and a distinguished member 
-                of the Forbes Business Council, Wale Tomtom stands at the intersection 
-                where distressed assets meet strategic investment.
+                Today, as CEO of Bluemart Realty Ltd and Tomgate Alliance Ltd, and a 
+                distinguished member of the Forbes Business Council, Wale Tomtom stands 
+                at the intersection where distressed assets meet strategic investment—serving 
+                as the trusted bridge between Nigeria's major commercial banks and discerning 
+                property investors.
               </p>
             </motion.div>
 
