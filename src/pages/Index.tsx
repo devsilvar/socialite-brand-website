@@ -9,7 +9,10 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      {/* Subtle grain texture overlay for premium feel */}
+      <div className="grain-overlay" />
+      
       <Navigation />
       <HeroSection />
       <AboutSection />
