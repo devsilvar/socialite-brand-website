@@ -15,23 +15,23 @@ const CredentialsSection = () => {
 
   const credentials = [
     {
-      title: "Forbes Business Council",
-      description: "Distinguished member representing Nigerian real estate excellence globally",
+      title: "Forbes Business Council Member",
+      description: "Inducted in 2022, representing Nigerian real estate excellence on a global platform",
       featured: true,
     },
     {
-      title: "Outstanding Youth Personality",
-      description: "Recognized for exceptional contributions to business and community",
+      title: "CEO, Bluemart Realty Ltd & Tomgate Alliance",
+      description: "Leading Nigeria's premier distressed and remedial property asset specialists since 2014",
       featured: false,
     },
     {
       title: "Distinguished Rotarian",
-      description: "Active member committed to humanitarian service and leadership",
+      description: "Active member of Rotary Club of Lagos, committed to humanitarian service and community development",
       featured: false,
     },
     {
-      title: "Akure Native & Ondo Advocate",
-      description: "Championing quality leadership and development in Ondo State",
+      title: "Akure Native & Ondo State Advocate",
+      description: "Born in Akure, championing quality leadership and sustainable development in Ondo State",
       featured: false,
     },
   ];
@@ -218,13 +218,19 @@ const CredentialsSection = () => {
                 Rooted in Akure, Building for Tomorrow
               </h3>
               <p className="text-muted-foreground mb-6 leading-relaxed text-lg">
-                A proud native of Akure, Ondo State, Wale Tomtom's vision extends beyond 
-                commercial success to community transformation. Married to the lovely Oyeteju, 
-                and blessed with two sons, his family values mirror his professional ethos.
+                <span className="font-medium text-foreground">Akinwale Matthew Feyiyemi Abidakun</span>, 
+                known as Wale Tomtom, is a proud native of Akure, Ondo State. His journey from 
+                sociology studies at the University of Ilorin to international business at the 
+                University of Leeds has shaped his unique approach to real estate.
+              </p>
+              <p className="text-muted-foreground mb-6 leading-relaxed text-lg">
+                Married to the lovely Oyeteju and blessed with two sons, his family values 
+                mirror his professional commitment to excellence and integrity.
               </p>
               <p className="text-muted-foreground leading-relaxed text-lg">
-                His commitment to Ondo State's development reflects a deeper understanding 
-                that true leadership means investing in the next generation.
+                His nine-year executive mentorship under Dr. Wale Babalakin SAN at Bi-Courtney Group 
+                (2005–2014) forged the institutional expertise that today powers Bluemart Realty Ltd 
+                and Tomgate Alliance Ltd.
               </p>
             </div>
             
@@ -241,8 +247,8 @@ const CredentialsSection = () => {
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/10">
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-white/10 z-10" />
                   <img
-                    src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80"
-                    alt="Family and community"
+                    src="/wale-tomtom.jpg"
+                    alt="Wale Tomtom - Akinwale Matthew Feyiyemi Abidakun"
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
