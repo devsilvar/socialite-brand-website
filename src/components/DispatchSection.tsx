@@ -8,24 +8,30 @@ const DispatchSection = () => {
 
   const articles = [
     {
-      category: "Ondo Vision",
+      category: "Leadership",
       title: "Quality Leadership for Ondo State's Future",
       excerpt: "A vision for developmental leadership that prioritizes infrastructure, youth empowerment, and sustainable growth.",
+      image: "/waletom with the governor of ogun state mr dapo abiodun.jpeg",
+      date: "2024"
     },
     {
-      category: "Industry",
+      category: "Business",
       title: "Navigating Nigeria's Remedial Asset Market",
       excerpt: "Understanding opportunities within distressed property portfolios and institutional liquidation.",
+      image: "/waletom with a standing picture with aliko dnagote.jpeg",
+      date: "2024"
     },
     {
       category: "Forbes",
       title: "The Sociology of Real Estate Investment",
       excerpt: "How understanding human behavior transforms property investment strategies in emerging markets.",
+      image: "/wale-tomtom-awards.jpg",
+      date: "2023"
     },
   ];
 
   return (
-    <section id="dispatch" className="py-24 sm:py-32 bg-secondary/30" ref={ref}>
+    <section id="dispatch" className="py-24 sm:py-32 bg-secondary/20" ref={ref}>
       <div className="container px-6 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
           
@@ -37,21 +43,21 @@ const DispatchSection = () => {
             className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16"
           >
             <div>
-              <p className="label-minimal text-primary mb-6">The Dispatch</p>
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary mb-4">The Dispatch</p>
               <h2 className="text-4xl sm:text-5xl font-display font-medium text-foreground">
                 Insights & Updates
               </h2>
             </div>
             <motion.a
               whileHover={{ x: 4 }}
-              href="/awards"
+              href="/press"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               View All →
             </motion.a>
           </motion.div>
 
-          {/* Articles */}
+          {/* Articles with images */}
           <div className="grid lg:grid-cols-3 gap-6">
             {articles.map((article, index) => (
               <motion.article
@@ -59,29 +65,43 @@ const DispatchSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                className="group bg-background p-8 rounded-2xl border border-border hover:border-primary/50 transition-all duration-300"
+                className="group bg-background rounded-2xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-300"
               >
-                <p className="text-xs font-medium uppercase tracking-wider text-primary mb-4">
-                  {article.category}
-                </p>
-                <h3 className="text-xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors leading-snug">
-                  {article.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {article.excerpt}
-                </p>
+                {/* Image */}
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img 
+                    src={article.image} 
+                    alt={article.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <p className="text-xs font-medium uppercase tracking-wider text-primary">
+                      {article.category}
+                    </p>
+                    <span className="text-xs text-muted-foreground">{article.date}</span>
+                  </div>
+                  <h3 className="text-xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors leading-snug">
+                    {article.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    {article.excerpt}
+                  </p>
+                </div>
               </motion.article>
             ))}
           </div>
 
-          {/* Subscribe */}
+          {/* Subscribe CTA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-20 bg-background rounded-2xl border border-border p-10 sm:p-12 max-w-2xl mx-auto text-center"
           >
-            <p className="label-minimal text-primary mb-4">Stay Informed</p>
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary mb-4">Stay Informed</p>
             <h3 className="text-2xl font-display font-medium text-foreground mb-4">
               Join the Dispatch
             </h3>

@@ -9,6 +9,19 @@ const Awards = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const awardImages = [
+    {
+      src: "/wale-tomtom-awards.jpg",
+      title: "Forbes Business Council Induction 2022",
+      description: "Induction into the prestigious Forbes Business Council",
+    },
+    {
+      src: "/waletom with an award in albert ogunde studio.jpeg",
+      title: "Award at Albert Ogunde Studio",
+      description: "Receiving a prestigious award at the iconic Albert Ogunde Studio",
+    },
+  ];
+
   const majorAwards = [
     {
       title: "Forbes Business Council",
@@ -119,6 +132,48 @@ const Awards = () => {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* Award Images Section */}
+      <section className="pb-24">
+        <div className="container px-6 sm:px-8 lg:px-12">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="label-minimal mb-12"
+          >
+            Award Moments
+          </motion.p>
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            {awardImages.map((award, index) => (
+              <motion.div
+                key={award.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                className="group cursor-pointer overflow-hidden rounded-2xl bg-secondary/30"
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={award.src}
+                    alt={award.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-display text-foreground mb-2">
+                    {award.title}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {award.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

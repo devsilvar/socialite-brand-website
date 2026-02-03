@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <footer className="relative py-20 sm:py-28 overflow-hidden">
       {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 via-background to-background" />
+      <div className="absolute inset-0 bg-gradient-to-t from-secondary/30 via-background to-background" />
       
       {/* Decorative glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
@@ -28,15 +28,15 @@ const Footer = () => {
             <div className="max-w-md">
               <Link to="/" className="inline-block mb-6 group">
                 <span className="text-4xl sm:text-5xl font-display font-medium text-foreground group-hover:text-primary transition-colors">
-                  Wale<span className="text-primary group-hover:text-foreground transition-colors">.</span>
+                  Akinwale<span className="text-primary group-hover:text-foreground transition-colors">.</span>
                 </span>
               </Link>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                The intersection of sociology and real estate strategy. Building institutional bridges across Nigeria.
+                Nigeria's leading institutional asset specialist. Transforming distressed bank properties into strategic investments.
               </p>
             </div>
             
-            {/* Links with hover effects */}
+            {/* Links */}
             <div className="flex flex-wrap gap-8 lg:gap-12">
               {links.map((link, index) => (
                 <motion.div 
@@ -66,12 +66,12 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Divider with gradient */}
+          {/* Divider */}
           <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent mb-10" />
           
           {/* Bottom section */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} Wale Tomtom. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Akinwale Abidakun. All rights reserved.</p>
             <div className="flex items-center gap-3">
               <motion.div 
                 animate={{ scale: [1, 1.2, 1] }}

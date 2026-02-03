@@ -18,7 +18,6 @@ const Navigation = () => {
   }, []);
 
   // Prevent page jump + lock scroll when mobile menu is open (iOS-safe)
-  // Using `position: fixed` avoids the common "scroll to top" behavior when toggling body overflow.
   useEffect(() => {
     if (!isOpen) return;
 
@@ -39,7 +38,6 @@ const Navigation = () => {
     body.style.left = "0";
     body.style.right = "0";
     body.style.width = "100%";
-    // Keep scrollbar space stable to reduce layout shift
     body.style.overflowY = "scroll";
 
     return () => {
@@ -55,18 +53,14 @@ const Navigation = () => {
 
   const navLinks = [
     { label: "Home", href: "/", isPage: true },
-    { label: "About", href: "/#about", isPage: false },
-    { label: "Business", href: "/#business", isPage: false },
     { label: "Gallery", href: "/gallery", isPage: true },
     { label: "Awards", href: "/awards", isPage: true },
     { label: "Press", href: "/press", isPage: true },
-    { label: "Contact", href: "/contact", isPage: true },
   ];
 
   const handleNavClick = (href: string, isPage: boolean) => {
     setIsOpen(false);
     if (!isPage && location.pathname !== "/") {
-      // Navigate to homepage first, then scroll to section
       window.location.href = href;
     }
   };
@@ -89,54 +83,61 @@ const Navigation = () => {
       >
         <div className="container mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between h-20 sm:h-24">
-            {/* Logo - Minimal & Refined */}
+            {/* Logo */}
             <Link to="/" className="group" onClick={handleLogoClick}>
               <motion.span
                 className="text-xl sm:text-2xl font-display font-medium text-foreground tracking-tight"
                 whileHover={{ opacity: 0.7 }}
                 transition={{ duration: 0.2 }}
               >
-                Wale<span className="text-primary">.</span>
+                Akinwale<span className="text-primary">.</span>
               </motion.span>
             </Link>
 
-            {/* Desktop Navigation - Ultra Clean */}
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-12">
               {navLinks.map((link) => (
                 <motion.div
                   key={link.label}
+                  className="relative"
                   whileHover={{ y: -1 }}
                   transition={{ duration: 0.2 }}
                 >
                   {link.isPage ? (
                     <Link
                       to={link.href}
-                      className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
+                      onClick={() => { setIsOpen(false); window.scrollTo(0, 0); }}
+                      className={`text-base lg:text-lg font-medium tracking-wide transition-colors duration-300 inline-block relative ${
                         location.pathname === link.href
                           ? "text-primary"
-                          : "text-muted-foreground hover:text-foreground"
+                          : "text-muted-foreground group-hover:text-foreground"
                       }`}
                     >
                       {link.label}
+                      {/* Animated underline */}
+                      <span className={`absolute left-0 bottom-0 h-0.5 bg-primary transition-all duration-300 ${
+                        location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                      }`} />
                     </Link>
                   ) : (
                     <a
                       href={link.href}
-                      onClick={() => handleNavClick(link.href, link.isPage)}
-                      className="text-sm font-medium tracking-wide text-muted-foreground hover:text-foreground transition-colors duration-300"
+                      onClick={() => { handleNavClick(link.href, link.isPage); window.scrollTo(0, 0); }}
+                      className="text-base lg:text-lg font-medium tracking-wide text-muted-foreground hover:text-foreground transition-colors duration-300 inline-block relative"
                     >
                       {link.label}
+                      <span className="absolute left-0 bottom-0 h-0.5 bg-primary w-0 hover:w-full transition-all duration-300" />
                     </a>
                   )}
                 </motion.div>
               ))}
 
-              {/* CTA - Minimal but Impactful */}
+              {/* CTA */}
               <motion.a
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 href="/contact"
-                className="px-6 py-2.5 bg-foreground text-background text-sm font-medium tracking-wide rounded-full hover:bg-primary transition-colors duration-300"
+                className="px-6 py-2.5 bg-foreground text-background text-base font-medium tracking-wide rounded-full hover:bg-primary hover:text-white transition-colors duration-300"
               >
                 Get in Touch
               </motion.a>
@@ -158,8 +159,7 @@ const Navigation = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Navigation - Rendered OUTSIDE the animated <nav> */}
-      {/* Framer Motion applies transforms to <nav>, which breaks `position: fixed` for descendants on some browsers. */}
+      {/* Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -183,7 +183,7 @@ const Navigation = () => {
                     {link.isPage ? (
                       <Link
                         to={link.href}
-                        onClick={() => setIsOpen(false)}
+                        onClick={() => { setIsOpen(false); window.scrollTo(0, 0); }}
                         className="text-3xl font-display font-medium text-foreground hover:text-primary transition-colors"
                       >
                         {link.label}
@@ -191,7 +191,7 @@ const Navigation = () => {
                     ) : (
                       <a
                         href={link.href}
-                        onClick={() => handleNavClick(link.href, link.isPage)}
+                        onClick={() => { handleNavClick(link.href, link.isPage); window.scrollTo(0, 0); }}
                         className="text-3xl font-display font-medium text-foreground hover:text-primary transition-colors"
                       >
                         {link.label}

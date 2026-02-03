@@ -10,9 +10,17 @@ const Press = () => {
 
   const pressFeatures = [
     {
+      publication: "The Guardian Nigeria",
+      title: "Akinwale Abidakun Tomtom: The Pragmatic Entrepreneur Delivering Innovative Real Estate Solutions through Bluemart Realty",
+      excerpt: "In the dynamic landscape of Nigeria's real estate sector, Bluemart Realty Ltd has emerged as a pioneering force, revolutionizing how institutional investors and individuals navigate distressed asset opportunities. Founded and led by Akinwale Matthew Feyiyemi Abidakun, popularly known as Wale Tomtom, the company has carved a unique niche in property disposition services.",
+      date: "February 2026",
+      url: "https://guardian.ng/specials/akinwale-abidakun-tomtom-the-pragmatic-entrepreneur-delivering-innovative-real-estate-solutions-through-bluemart-realty/",
+      featured: true,
+    },
+    {
       publication: "THISDAY",
       title: "Akinwale Abidakun joins Forbes Business Council",
-      excerpt: "Akinwale Matthew Feyiyemi Abidakun, widely known by his nickname Wale Tomtom, is a prominent figure in the Nigerian real estate landscape, serving as the founder and President of Bluemart Realty Group. He has been honored and inaugurated into the Forbes Africa Business Council, an acknowledgment of his exemplary track record.",
+      excerpt: "Akinwale Matthew Feyiyemi Abidakun, widely known by his nickname Wale Tomtom, is a prominent figure in the Nigerian real estate landscape, serving as the founder and President of Bluemart Realty Ltd. He has been honored and inaugurated into the Forbes Africa Business Council, an acknowledgment of his exemplary track record.",
       date: "January 2026",
       url: "https://www.thisdaylive.com/2026/01/07/akinwale-abidakun-joins-forbes-business-council/",
       featured: true,
@@ -136,9 +144,9 @@ const Press = () => {
               {pressFeatures.filter(item => item.featured).map((article, index) => (
                 <motion.article
                   key={article.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  initial={{ opacity: 0, filter: "blur(20px)", y: 40 }}
+                  animate={isInView ? { opacity: 1, filter: "blur(0px)", y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
                   className="group relative bg-foreground text-background p-8 lg:p-10 rounded-3xl overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent opacity-50" />
@@ -220,6 +228,59 @@ const Press = () => {
                 </motion.article>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Guardian Newspaper Feature - Special Highlight */}
+      <section className="py-24 sm:py-32">
+        <div className="container px-6 sm:px-8 lg:px-12">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="bg-foreground text-background rounded-3xl overflow-hidden"
+            >
+              <div className="grid lg:grid-cols-2 gap-0">
+                <div className="p-8 lg:p-12 flex flex-col justify-center">
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="px-3 py-1 bg-primary/20 rounded-full text-xs font-medium uppercase tracking-wider text-primary-foreground">
+                      The Guardian Nigeria
+                    </span>
+                    <span className="flex items-center gap-1 text-sm text-background/60">
+                      <Calendar size={14} />
+                      February 2026
+                    </span>
+                  </div>
+                  <h3 className="text-2xl lg:text-3xl font-display font-medium mb-6 text-background">
+                    Akinwale Abidakun Tomtom: The Pragmatic Entrepreneur Delivering Innovative Real Estate Solutions through Bluemart Realty
+                  </h3>
+                  <p className="text-background/70 mb-8 leading-relaxed">
+                    In the dynamic landscape of Nigeria's real estate sector, Bluemart Realty Ltd has emerged as a pioneering force, revolutionizing how institutional investors and individuals navigate distressed asset opportunities. Founded and led by Akinwale Matthew Feyiyemi Abidakun, popularly known as Wale Tomtom, the company has carved a unique niche in property disposition services.
+                  </p>
+                  <motion.a
+                    whileHover={{ x: 4 }}
+                    href="https://guardian.ng/specials/akinwale-abidakun-tomtom-the-pragmatic-entrepreneur-delivering-innovative-real-estate-solutions-through-bluemart-realty/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                  >
+                    Read Full Article
+                    <ExternalLink size={14} />
+                  </motion.a>
+                </div>
+                <div className="relative h-full min-h-[400px] lg:min-h-auto">
+                  <img
+                    src="/waletom feutures in the guardian newspapper.jpeg"
+                    alt="The Guardian Newspaper Feature on Wale Tomtom"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-l from-foreground/20 to-transparent" />
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
