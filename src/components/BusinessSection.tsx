@@ -290,15 +290,15 @@ const BusinessSection = () => {
               </p>
 
               {/* Image */}
-              <motion.div 
-                initial={{ clipPath: "inset(0 100% 0 0)" }}
-                whileInView={{ clipPath: "inset(0 0% 0 0)" }}
+              <motion.div
+                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                className='aspect-video rounded-2xl overflow-hidden mb-10'
+                className='aspect-auto rounded-2xl overflow-hidden mb-10'
               >
                 <img
-                  src='/waletom professional shoot image.jpeg'
+                  src='/waletom at lagos business school photoshoot.jpeg'
                   alt='Bluemart Realty leadership'
                   className='w-full h-full object-cover object-top'
                 />
