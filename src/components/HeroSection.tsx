@@ -153,7 +153,7 @@ const HeroSection = () => {
                 className="relative aspect-[4/3] lg:aspect-[5/4] rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="/waletom professional shoot image.jpeg"
+                  src="/waletom professional phsotoshoot popularly used with blue backgound.jpeg"
                   alt="Akinwale Abidakun - CEO of Bluemart Realty Ltd"
                   className="w-full h-full object-cover object-top"
                 />

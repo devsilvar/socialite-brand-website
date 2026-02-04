@@ -20,7 +20,7 @@ const DispatchSection = () => {
       title: "Navigating Nigeria's Remedial Asset Market",
       excerpt:
         'Understanding opportunities within distressed property portfolios and institutional liquidation.',
-      image: '/waletom with a standing picture with aliko dnagote.jpeg',
+      image: '/waletom in a palace big beautiful location and wearing traditional attires.jpeg',
       date: '2024',
     },
     {

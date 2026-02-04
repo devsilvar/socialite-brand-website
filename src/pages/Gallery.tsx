@@ -36,6 +36,12 @@ const Gallery = () => {
       category: "International",
     },
     {
+      src: "/waletom in a foregn country with acasual cloth chlling.jpeg",
+      title: "International Casual",
+      description: "Relaxed moments during an international trip, showcasing global connections",
+      category: "International",
+    },
+    {
       src: "/Nighout in the city of France.jpeg",
       title: "Evening in France",
       description: "An elegant evening reception in one of France's finest cities",
@@ -89,6 +95,12 @@ const Gallery = () => {
       src: "/waletom with the oni of ife in the palace.jpeg",
       title: "Ooni of Ife's Palace",
       description: "A respectful visit to His Imperial Majesty, the Ooni of Ife at his royal palace",
+      category: "Royal",
+    },
+    {
+      src: "/waletom in a palace big beautiful location and wearing traditional attires.jpeg",
+      title: "Traditional Attire",
+      description: "Honoring heritage in a magnificent palace setting wearing traditional Nigerian attire",
       category: "Royal",
     },
     {
@@ -253,6 +265,24 @@ const Gallery = () => {
       src: "/wale-tomtom.jpg",
       title: "Professional Portrait",
       description: "A distinguished professional portrait capturing executive presence",
+      category: "Professional",
+    },
+    {
+      src: "/waletom professional phsotoshoot popularly used with blue backgound.jpeg",
+      title: "Executive Studio Portrait",
+      description: "A polished studio portrait with signature blue background, perfect for professional profiles",
+      category: "Professional",
+    },
+    {
+      src: "/waletom posing in suit siiting down for a professional photoshoot.jpeg",
+      title: "Executive Suit Portrait",
+      description: "Commanding presence in a tailored suit during a formal executive photoshoot",
+      category: "Professional",
+    },
+    {
+      src: "/waletom siiting down while in a suite taking a snpashot for a pofessional photoshoot.jpeg",
+      title: "Seated Executive",
+      description: "A composed seated portrait capturing leadership and sophistication",
       category: "Professional",
     },
     {

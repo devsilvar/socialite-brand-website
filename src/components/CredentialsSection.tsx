@@ -312,7 +312,7 @@ const CredentialsSection = () => {
                 <div className='relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/10'>
                   <div className='absolute inset-0 bg-gradient-to-t from-foreground/20 via-transparent to-white/5 z-10' />
                   <img
-                    src='/wale-tomtom.jpg'
+                    src='/waletom posing in suit siiting down for a professional photoshoot.jpeg'
                     alt='Akinwale Abidakun'
                     className='w-full h-full object-cover object-top'
                     loading='lazy'
