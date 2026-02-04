@@ -298,7 +298,7 @@ const BusinessSection = () => {
                 className='aspect-auto rounded-2xl overflow-hidden mb-10'
               >
                 <img
-                  src='/waletom professional phsotoshoot popularly used with blue backgound.jpeg'
+                  src='/waletom at lagos business school photoshoot.jpeg'
                   alt='Bluemart Realty leadership'
                   className='w-full h-full object-cover object-top'
                 />
